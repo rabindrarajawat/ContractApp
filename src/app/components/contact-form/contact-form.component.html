@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <h2>{{ isEditMode ? 'Edit Contact' : 'Create Contact' }}</h2>
+  
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" class="form-control" formControlName="firstName">
+        <div *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched" class="text-danger">
+          First name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" class="form-control" formControlName="lastName">
+        <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="text-danger">
+          Last name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email">
+        <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="text-danger">
+          Please enter a valid email.
+        </div>
+      </div>
+  <br/>
+      <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+    </form>
+  </div>
+  
